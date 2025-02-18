@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "toPCsLwV4Rc=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\USER\\מכירה\\C#\\debt_system\\BL\\BL.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\USER\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0\\microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
+    "C:\\Users\\USER\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
