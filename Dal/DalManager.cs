@@ -19,7 +19,7 @@ namespace Dal
             ServiceCollection collection = new ServiceCollection();
             collection.AddSingleton<Dbcontext>();
             collection.AddSingleton<PaymentService>();
-          
+            
 
             var serviceprovider = collection.BuildServiceProvider();
             Payment = serviceprovider.GetRequiredService<PaymentService>();
