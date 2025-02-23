@@ -9,5 +9,7 @@ namespace Dal.DalApi
     public interface ICrud<T>
     {
         public List<T> GetAll();
+
+        public bool Create(T item);
     }
 }

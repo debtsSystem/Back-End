@@ -1,7 +1,6 @@
 ﻿using BL;
 using BL.BlApi;
 using BL.Bo;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Server.Controllers
@@ -14,14 +13,20 @@ namespace Server.Controllers
         IBLPayment Iblpayment;
         public PaymentController(BLManager blManager)
         {
-            //this.Blmanager = blManager;
+            this.Blmanager = blManager; // אחסן את blManager באובייקט Blmanager
             this.Iblpayment = blManager.BLPayment;
         }
+
         [Route("GetAllPayment")]
         [HttpGet]
         public List<BLPayment> GetPaymentList()
         {
            return Iblpayment.ReadAll();
         }
+
+        [Route("addTypeOfPayment/TypeOfPayment")]
+        [HttpPost()]
+        public bool Create(BLPayment payment) =>
+           Blmanager.BLPayment.Create(payment);
     }
 }

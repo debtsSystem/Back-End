@@ -4742,11 +4742,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\USER\\מכירה\\back_end\\debt_system\\Dal\\Dal.csproj",
+      "projectUniqueName": "C:\\Users\\USER\\Desktop\\פרויקטים\\מכירה\\debtsSystem\\C#\\Back-End\\Back-End\\Dal\\Dal.csproj",
       "projectName": "Dal",
-      "projectPath": "C:\\Users\\USER\\מכירה\\back_end\\debt_system\\Dal\\Dal.csproj",
+      "projectPath": "C:\\Users\\USER\\Desktop\\פרויקטים\\מכירה\\debtsSystem\\C#\\Back-End\\Back-End\\Dal\\Dal.csproj",
       "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\USER\\מכירה\\back_end\\debt_system\\Dal\\obj\\",
+      "outputPath": "C:\\Users\\USER\\Desktop\\פרויקטים\\מכירה\\debtsSystem\\C#\\Back-End\\Back-End\\Dal\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -4826,7 +4826,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.103/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

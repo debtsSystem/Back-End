@@ -18,6 +18,8 @@ namespace BL.BlImplementation
         {
             this.Dal = manager;
         }
+
+
         public List<BLPayment> ReadAll() =>
             CastListToBl(Dal.Payment.GetAll());
 
@@ -37,6 +39,21 @@ namespace BL.BlImplementation
             List<BLPayment> lst = new List<BLPayment>();
             list.ForEach(x => lst.Add(CastingToBl(x)));
             return lst;
+        }
+
+        public PaymentType CastingToDal(BLPayment blpayment)
+        {
+            PaymentType P = new PaymentType()
+            {
+                PaymentCode = blpayment.PaymentId,
+                TypeOfpayment = blpayment.TypeOfPayment
+            };
+            return P;
+        }
+
+        public bool Create(BLPayment bLPayment)
+        {
+            return Dal.Payment.Create(CastingToDal(bLPayment));
         }
 
     }

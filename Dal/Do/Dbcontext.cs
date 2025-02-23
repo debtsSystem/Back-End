@@ -27,13 +27,13 @@ public partial class dbcontext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-4BA570G\\SQLEXPRESS;Initial Catalog=debts_system;Integrated Security=True;Trust Server Certificate=True");
+        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-S6K9TIS;Initial Catalog=debts_system;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Customer>(entity =>
         {
-            entity.HasKey(e => e.CustomerId).HasName("PK__customer__B611CB7DDB7E855B");
+            entity.HasKey(e => e.CustomerId).HasName("PK__customer__B611CB7DC5FAAA13");
 
             entity.ToTable("customer");
 
@@ -48,7 +48,7 @@ public partial class dbcontext : DbContext
 
         modelBuilder.Entity<Debt>(entity =>
         {
-            entity.HasKey(e => e.DebtsId).HasName("PK__debts__A8B8A7A22D877B9D");
+            entity.HasKey(e => e.DebtsId).HasName("PK__debts__A8B8A7A2150106E6");
 
             entity.ToTable("debts");
 
@@ -68,20 +68,20 @@ public partial class dbcontext : DbContext
 
             entity.HasOne(d => d.Customer).WithMany(p => p.Debts)
                 .HasForeignKey(d => d.CustomerId)
-                .HasConstraintName("FK__debts__customerI__403A8C7D");
+                .HasConstraintName("FK__debts__customerI__4222D4EF");
 
             entity.HasOne(d => d.PaymentTypeNavigation).WithMany(p => p.Debts)
                 .HasForeignKey(d => d.PaymentType)
-                .HasConstraintName("FK__debts__paymentTy__4222D4EF");
+                .HasConstraintName("FK__debts__paymentTy__440B1D61");
 
             entity.HasOne(d => d.Sale).WithMany(p => p.Debts)
                 .HasForeignKey(d => d.SaleId)
-                .HasConstraintName("FK__debts__saleId__412EB0B6");
+                .HasConstraintName("FK__debts__saleId__4316F928");
         });
 
         modelBuilder.Entity<PaymentType>(entity =>
         {
-            entity.HasKey(e => e.PaymentCode).HasName("PK__paymentT__B5D907FA77B963B5");
+            entity.HasKey(e => e.PaymentCode).HasName("PK__paymentT__B5D907FA7BC5B257");
 
             entity.ToTable("paymentType");
 
@@ -94,7 +94,7 @@ public partial class dbcontext : DbContext
 
         modelBuilder.Entity<RegularCustomer>(entity =>
         {
-            entity.HasKey(e => e.CustomerId).HasName("PK__regularC__B611CB7D25038661");
+            entity.HasKey(e => e.CustomerId).HasName("PK__regularC__B611CB7DC61E679F");
 
             entity.ToTable("regularCustomer");
 
@@ -126,12 +126,12 @@ public partial class dbcontext : DbContext
             entity.HasOne(d => d.Customer).WithOne(p => p.RegularCustomer)
                 .HasForeignKey<RegularCustomer>(d => d.CustomerId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__regularCu__custo__3B75D760");
+                .HasConstraintName("FK__regularCu__custo__3D5E1FD2");
         });
 
         modelBuilder.Entity<Sale>(entity =>
         {
-            entity.HasKey(e => e.SaleId).HasName("PK__sales__FAE8F4F53AE00377");
+            entity.HasKey(e => e.SaleId).HasName("PK__sales__FAE8F4F5DFE88E78");
 
             entity.ToTable("sales");
 

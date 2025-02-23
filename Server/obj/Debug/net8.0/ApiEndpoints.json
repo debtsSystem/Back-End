@@ -1,6 +1,32 @@
 [
   {
     "ContainingType": "Server.Controllers.PaymentController",
+    "Method": "Create",
+    "RelativePath": "api/Payment/addTypeOfPayment/TypeOfPayment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "payment",
+        "Type": "BL.Bo.BLPayment",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Server.Controllers.PaymentController",
     "Method": "GetPaymentList",
     "RelativePath": "api/Payment/GetAllPayment",
     "HttpMethod": "GET",

@@ -15,9 +15,22 @@ namespace Dal.DalImplementation
         {
             this.db = db;
         }
+
         public List<PaymentType> GetAll()
         {
             return db.PaymentTypes.ToList();
+        }
+
+        public bool Create(PaymentType item)
+        {
+            try
+            {
+                db.PaymentTypes.Add(item);
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            { return false; }
         }
     }
 }

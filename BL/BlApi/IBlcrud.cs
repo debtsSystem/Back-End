@@ -11,5 +11,8 @@ namespace BL.BlApi
     {
         public List<T> ReadAll();
 
+        public bool Create(T item);
+
+
     }
 }

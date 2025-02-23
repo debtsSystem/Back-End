@@ -11,5 +11,8 @@ namespace BL.BlApi
     public interface IBLPayment
     {
         public List<BLPayment> ReadAll();
+
+        public bool Create(BLPayment bLPayment);
+
     }
 }
