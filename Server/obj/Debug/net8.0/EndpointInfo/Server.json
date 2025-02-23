@@ -49,13 +49,13 @@
       "BLPayment": {
         "type": "object",
         "properties": {
-          "paymentCode": {
+          "paymentId": {
             "type": "integer",
             "format": "int32"
           },
           "typeOfPayment": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

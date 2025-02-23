@@ -1,17 +1,155 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
-namespace Dal.Do
+namespace Dal.Do;
+
+public partial class dbcontext : DbContext
 {
-    public class Dbcontext
+    public dbcontext()
     {
-        public List<Payment> Payment { get; set; }
-        public Dbcontext()
-        { 
-
-        }
     }
+
+    public dbcontext(DbContextOptions<dbcontext> options)
+        : base(options)
+    {
+    }
+
+    public virtual DbSet<Customer> Customers { get; set; }
+
+    public virtual DbSet<Debt> Debts { get; set; }
+
+    public virtual DbSet<PaymentType> PaymentTypes { get; set; }
+
+    public virtual DbSet<RegularCustomer> RegularCustomers { get; set; }
+
+    public virtual DbSet<Sale> Sales { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-4BA570G\\SQLEXPRESS;Initial Catalog=debts_system;Integrated Security=True;Trust Server Certificate=True");
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Customer>(entity =>
+        {
+            entity.HasKey(e => e.CustomerId).HasName("PK__customer__B611CB7DDB7E855B");
+
+            entity.ToTable("customer");
+
+            entity.Property(e => e.CustomerId)
+                .ValueGeneratedNever()
+                .HasColumnName("customerId");
+            entity.Property(e => e.CustomerName)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("customerName");
+        });
+
+        modelBuilder.Entity<Debt>(entity =>
+        {
+            entity.HasKey(e => e.DebtsId).HasName("PK__debts__A8B8A7A22D877B9D");
+
+            entity.ToTable("debts");
+
+            entity.Property(e => e.DebtsId).HasColumnName("debtsId");
+            entity.Property(e => e.CustomerId).HasColumnName("customerId");
+            entity.Property(e => e.Date)
+                .HasColumnType("datetime")
+                .HasColumnName("date");
+            entity.Property(e => e.IsPaid).HasColumnName("isPaid");
+            entity.Property(e => e.Notes)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("notes");
+            entity.Property(e => e.PaymentType).HasColumnName("paymentType");
+            entity.Property(e => e.SaleId).HasColumnName("saleId");
+            entity.Property(e => e.SumOfDebts).HasColumnName("sumOfDebts");
+
+            entity.HasOne(d => d.Customer).WithMany(p => p.Debts)
+                .HasForeignKey(d => d.CustomerId)
+                .HasConstraintName("FK__debts__customerI__403A8C7D");
+
+            entity.HasOne(d => d.PaymentTypeNavigation).WithMany(p => p.Debts)
+                .HasForeignKey(d => d.PaymentType)
+                .HasConstraintName("FK__debts__paymentTy__4222D4EF");
+
+            entity.HasOne(d => d.Sale).WithMany(p => p.Debts)
+                .HasForeignKey(d => d.SaleId)
+                .HasConstraintName("FK__debts__saleId__412EB0B6");
+        });
+
+        modelBuilder.Entity<PaymentType>(entity =>
+        {
+            entity.HasKey(e => e.PaymentCode).HasName("PK__paymentT__B5D907FA77B963B5");
+
+            entity.ToTable("paymentType");
+
+            entity.Property(e => e.PaymentCode).HasColumnName("paymentCode");
+            entity.Property(e => e.TypeOfpayment)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("typeOfpayment");
+        });
+
+        modelBuilder.Entity<RegularCustomer>(entity =>
+        {
+            entity.HasKey(e => e.CustomerId).HasName("PK__regularC__B611CB7D25038661");
+
+            entity.ToTable("regularCustomer");
+
+            entity.Property(e => e.CustomerId)
+                .ValueGeneratedNever()
+                .HasColumnName("customerId");
+            entity.Property(e => e.Activy).HasColumnName("activy");
+            entity.Property(e => e.Address)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("address");
+            entity.Property(e => e.DefaultPhone)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("defaultPhone");
+            entity.Property(e => e.Fax)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("fax");
+            entity.Property(e => e.HomePhone)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("homePhone");
+            entity.Property(e => e.Mail)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("mail");
+
+            entity.HasOne(d => d.Customer).WithOne(p => p.RegularCustomer)
+                .HasForeignKey<RegularCustomer>(d => d.CustomerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__regularCu__custo__3B75D760");
+        });
+
+        modelBuilder.Entity<Sale>(entity =>
+        {
+            entity.HasKey(e => e.SaleId).HasName("PK__sales__FAE8F4F53AE00377");
+
+            entity.ToTable("sales");
+
+            entity.Property(e => e.SaleId)
+                .ValueGeneratedNever()
+                .HasColumnName("saleId");
+            entity.Property(e => e.EventTime)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("eventTime");
+            entity.Property(e => e.SaleName)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("saleName");
+        });
+
+        OnModelCreatingPartial(modelBuilder);
+    }
+
+    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

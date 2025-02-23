@@ -8,7 +8,7 @@ namespace BL.Bo
 {
     public class BLPayment
     {
-        public int PaymentCode { get; init; }
-        public int TypeOfPayment { get; set; }
+        public int PaymentId { get; init; }
+        public string TypeOfPayment { get; set; }
     }
 }

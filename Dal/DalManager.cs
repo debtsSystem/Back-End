@@ -17,7 +17,7 @@ namespace Dal
         public DalManager()
         {
             ServiceCollection collection = new ServiceCollection();
-            collection.AddSingleton<Dbcontext>();
+            collection.AddSingleton<dbcontext>();
             collection.AddSingleton<PaymentService>();
             
 
