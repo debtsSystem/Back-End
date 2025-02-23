@@ -12,3 +12,5 @@ x86/
 *.suo
 *.sln.ide
 *.vscode/
+*vs/
+
