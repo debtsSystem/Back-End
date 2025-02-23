@@ -7,8 +7,8 @@ using Dal.Do;
 
 namespace Dal.DalApi
 {
-    public interface IPayment:ICrud<Payment>
+    public interface IPayment:ICrud<PaymentType>
     {
-        public List<Payment> GetAll();
+        public List<PaymentType> GetAll();
     }
 }

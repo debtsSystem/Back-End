@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BL.Bo;
 
-namespace Dal.Do
+namespace BL.BlApi
 {
-    public class Payment
+    public interface IBlcrud<T>
     {
-        public int PaymentCode { get; init; }
-        public int TypeOfPayment { get; set; }
+        public List<T> ReadAll();
 
     }
 }

@@ -10,14 +10,14 @@ namespace Dal.DalImplementation
 {
     public class PaymentService : IPayment
     {
-        private Dbcontext db;
-        public PaymentService(Dbcontext db)
+        private dbcontext db;
+        public PaymentService(dbcontext db)
         {
             this.db = db;
         }
-        public List<Payment> GetAll()
+        public List<PaymentType> GetAll()
         {
-            return db.Payment;
+            return db.PaymentTypes.ToList();
         }
     }
 }
