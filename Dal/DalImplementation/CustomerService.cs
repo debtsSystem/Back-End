@@ -18,7 +18,26 @@ namespace Dal.DalImplementation
 
         public bool Create(Customer item)
         {
-            throw new NotImplementedException();
+            try
+            {
+                db.Customers.Add(item);
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            { return false; }
+        }
+
+        public bool Delete(Customer item)
+        {
+            try
+            {
+                db.Customers.Remove(item);
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            { return false; }
         }
 
         public List<Customer> GetAll()
@@ -26,5 +45,30 @@ namespace Dal.DalImplementation
             return db.Customers.ToList();
         }
 
+        public List<Customer> Read(Predicate<Customer> filter)
+        {
+            return db.Customers.ToList().FindAll(x => filter(x));
+        }
+
+        public bool Update(Customer item)
+        {
+            try
+            {
+                int index = db.Customers.ToList().FindIndex(x => x.CustomerId == item.CustomerId);
+                if (index == -1)
+                    throw new Exception("Catering does not exist in DB");
+                Customer c = db.Customers.ToList()[index];
+                c.CustomerId = item.CustomerId;
+                c.CustomerName  = item.CustomerName;
+                db.Customers.ToList()[index] = c;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
     }
 }

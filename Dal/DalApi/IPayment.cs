@@ -10,8 +10,6 @@ namespace Dal.DalApi
 {
     public interface IPayment:ICrud<PaymentType>
     {
-        public List<PaymentType> GetAll();
-
-        public bool Create(PaymentType item);
+        
     }
 }

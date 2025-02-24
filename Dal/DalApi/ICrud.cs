@@ -10,6 +10,14 @@ namespace Dal.DalApi
     {
         public List<T> GetAll();
 
+        public List<T> Read(Predicate<T> filter);
+
         public bool Create(T item);
+
+        public bool Delete(T item);
+
+        public bool Update(T item);
+
+
     }
 }

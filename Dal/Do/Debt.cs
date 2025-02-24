@@ -21,9 +21,9 @@ public partial class Debt
 
     public int? PaymentType { get; set; }
 
-    public virtual Customer? Customer { get; set; }
+    public virtual Customer Customer { get; set; } 
 
-    public virtual PaymentType? PaymentTypeNavigation { get; set; }
+    //public virtual PaymentType? PaymentTypeNavigation { get; set; }
 
     public virtual Sale? Sale { get; set; }
 }

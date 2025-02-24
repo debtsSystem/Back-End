@@ -32,5 +32,43 @@ namespace Dal.DalImplementation
             catch
             { return false; }
         }
+
+        public bool Delete(PaymentType item)
+        {
+            try
+            {
+                db.PaymentTypes.Remove(item);
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            { return false; }
+        }
+
+        public bool Update(PaymentType item)
+        {
+            try
+            {
+                int index = db.PaymentTypes.ToList().FindIndex(x => x.PaymentCode == item.PaymentCode);
+                if (index == -1)
+                    throw new Exception("Catering does not exist in DB");
+                PaymentType c = db.PaymentTypes.ToList()[index];
+                c.PaymentCode = item.PaymentCode;
+                c.TypeOfpayment = item.TypeOfpayment;
+                db.PaymentTypes.ToList()[index] = c;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        public List<PaymentType> Read(Predicate<PaymentType> filter)
+        {
+          return db.PaymentTypes.ToList().FindAll(x => filter(x));
+        }
     }
 }

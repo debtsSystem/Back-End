@@ -8,11 +8,8 @@ using Dal.Do;
 
 namespace BL.BlApi
 {
-    public interface IBLPayment
+    public interface IBLPayment : IBlcrud<BLPayment>
     {
-        public List<BLPayment> ReadAll();
-
-        public bool Create(BLPayment bLPayment);
-
+        BLPayment Read(int filter);
     }
 }

@@ -66,13 +66,13 @@ public partial class dbcontext : DbContext
             entity.Property(e => e.SaleId).HasColumnName("saleId");
             entity.Property(e => e.SumOfDebts).HasColumnName("sumOfDebts");
 
-            entity.HasOne(d => d.Customer).WithMany(p => p.Debts)
-                .HasForeignKey(d => d.CustomerId)
-                .HasConstraintName("FK__debts__customerI__4222D4EF");
+            //entity.HasOne(d => d.Customer).WithMany(p => p.Debts)
+            //    .HasForeignKey(d => d.CustomerId)
+            //    .HasConstraintName("FK__debts__customerI__4222D4EF");
 
-            entity.HasOne(d => d.PaymentTypeNavigation).WithMany(p => p.Debts)
-                .HasForeignKey(d => d.PaymentType)
-                .HasConstraintName("FK__debts__paymentTy__440B1D61");
+            //entity.HasOne(d => d.PaymentTypeNavigation).WithMany(p => p.Debts)
+            //    .HasForeignKey(d => d.PaymentType)
+            //    .HasConstraintName("FK__debts__paymentTy__440B1D61");
 
             entity.HasOne(d => d.Sale).WithMany(p => p.Debts)
                 .HasForeignKey(d => d.SaleId)
