@@ -1,6 +1,7 @@
 ﻿using BL;
 using BL.BlApi;
 using BL.Bo;
+using Dal;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Server.Controllers
@@ -28,5 +29,21 @@ namespace Server.Controllers
         [HttpPost()]
         public bool Create(BLPayment payment) =>
            Blmanager.BLPayment.Create(payment);
+
+        [Route("DeletePaymentType/Code")]
+        [HttpDelete()]
+        public bool Delete(int Id) =>
+            Blmanager.BLPayment.Delete(Id);
+
+
+        [Route("UpDatePaymentType/Code")]
+        [HttpPut()]
+        public bool UpDate(BLPayment payment) =>
+            Blmanager.BLPayment.Update(payment);
+
+        [Route("GetPaymentByCode/Code")]
+        [HttpGet()]
+        public BLPayment GetPaymentByCode(int Id) =>
+            Blmanager.BLPayment.Read(Id);
     }
 }

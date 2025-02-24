@@ -56,6 +56,23 @@ namespace BL.BlImplementation
             return Dal.Payment.Create(CastingToDal(bLPayment));
         }
 
+        public bool Delete(int codePayment)
+        {
+          return  Dal.Payment.Delete(Dal.Payment.GetAll().Find(x => x.PaymentCode == codePayment));
+        }
+
+        public bool Update(BLPayment bLPayment)
+        {
+            return Dal.Payment.Update(CastingToDal(bLPayment));
+        }
+
+        public BLPayment Read(int filter)
+        {
+            PaymentType temp = Dal.Payment.GetAll().Find(x => x.PaymentCode == filter);
+            if (temp == null)
+                return null;
+            return CastingToBl(temp);
+        }
     }
 }
 
