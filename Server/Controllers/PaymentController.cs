@@ -20,7 +20,9 @@ namespace Server.Controllers
         [Route("GetAllPayment")]
         [HttpGet]
         public List<BLPayment> GetPaymentList()
+            
         {
+           
            return Iblpayment.ReadAll();
         }
     }

@@ -9,5 +9,4 @@ public partial class PaymentType
 
     public string? TypeOfpayment { get; set; }
 
-    public virtual ICollection<Debt> Debts { get; set; } = new List<Debt>();
 }
